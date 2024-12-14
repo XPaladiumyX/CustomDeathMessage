@@ -5,7 +5,7 @@ api-version: '1.20'
 commands:
   deathmessage:
     description: Manage custom death messages.
-    usage: /deathmessage [set/reset/show/reload] [join/leave/playername] [message]
+    usage: /deathmessage [set/reset/show/reload] [Only for "show" playername] [message]
     aliases: [ dm ]
 permissions:
   skyxnetwork.deathmessage.set:

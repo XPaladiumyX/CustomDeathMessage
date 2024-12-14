@@ -116,7 +116,10 @@ public final class CustomDeathMessage extends JavaPlugin implements Listener {
                     player.sendMessage(pluginPrefix + ChatColor.RED + "Your custom death message cannot exceed 30 characters!");
                     return true;
                 }
-
+                if (containsUnicode(message)) {
+                    player.sendMessage(pluginPrefix + ChatColor.RED + "You can't set Unicode characters in your custom message!");
+                    return true;
+                }
                 // Validation : caractères autorisés uniquement
                 if (!isMessageValid(message)) {
                     player.sendMessage(pluginPrefix + ChatColor.RED + "Your message can only contain letters, numbers, spaces, and common symbols.");
@@ -217,6 +220,15 @@ public final class CustomDeathMessage extends JavaPlugin implements Listener {
     private void saveMessages() {
         userdataConfig.set("deathMessages", deathMessages);
         saveUserDataFile();
+    }
+
+    private boolean containsUnicode(String message) {
+        for (char c : message.toCharArray()) {
+            if (c > 127) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isMessageValid(String message) {

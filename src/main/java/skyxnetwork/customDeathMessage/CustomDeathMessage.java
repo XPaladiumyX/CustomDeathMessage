@@ -120,6 +120,10 @@ public final class CustomDeathMessage extends JavaPlugin implements Listener {
                     player.sendMessage(pluginPrefix + ChatColor.RED + "You can't set Unicode characters in your custom message!");
                     return true;
                 }
+                if (containsProhibitedFormatting(message)) {
+                    player.sendMessage(pluginPrefix + ChatColor.RED + "You can't use prohibited formatting codes (&k, &o, &l, &n, &m) in your custom message!");
+                    return true;
+                }
                 // Validation : caractères autorisés uniquement
                 if (!isMessageValid(message)) {
                     player.sendMessage(pluginPrefix + ChatColor.RED + "Your message can only contain letters, numbers, spaces, and common symbols.");
@@ -233,6 +237,10 @@ public final class CustomDeathMessage extends JavaPlugin implements Listener {
 
     private boolean isMessageValid(String message) {
         return message.matches("^[a-zA-Z0-9 .,!?\"'()@#$%^&*_-]+$");
+    }
+
+    private boolean containsProhibitedFormatting(String message) {
+        return message.contains("&k") || message.contains("&o") || message.contains("&l") || message.contains("&n") || message.contains("&m");
     }
 
     private boolean containsBadWords(String message) {

@@ -2,6 +2,11 @@ name: CustomDeathMessage
 version: '1.1-SNAPSHOT'
 main: skyxnetwork.customDeathMessage.CustomDeathMessage
 api-version: '1.20'
+commands:
+  deathmessage:
+    description: Manage custom death messages.
+    usage: /deathmessage [set/reset/show/reload] [join/leave/playername] [message]
+    aliases: [ dm ]
 permissions:
   skyxnetwork.deathmessage.set:
     description: Allows players to set a custom death message.

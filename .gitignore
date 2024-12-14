@@ -111,3 +111,5 @@ buildNumber.properties
 
 # Common working directory
 run/
+src/main/resources/plugin.yml
+src/main/java/skyxnetwork/customDeathMessage/CustomDeathMessage.java

@@ -17,3 +17,6 @@ permissions:
   skyxnetwork.deathmessage.reload:
     description: Allows reloading the configuration and userdata.
     default: op
+  skyxnetwork.deathmessage.show:
+    description: Allows admins to view the custom death message of a specific player.
+    default: op

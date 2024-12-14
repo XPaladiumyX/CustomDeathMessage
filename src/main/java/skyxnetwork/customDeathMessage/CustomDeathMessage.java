@@ -164,6 +164,29 @@ public final class CustomDeathMessage extends JavaPlugin implements Listener {
                 saveUserDataFile();
 
                 player.sendMessage(pluginPrefix + ChatColor.GREEN + "Custom death message reset!");
+
+            } else if ("show".equalsIgnoreCase(action)) {
+                if (!sender.hasPermission("skyxnetwork.deathmessage.show")) {
+                    sender.sendMessage(pluginPrefix + ChatColor.RED + "You do not have permission to view custom death messages.");
+                    return true;
+                }
+
+                if (args.length < 2) {
+                    sender.sendMessage(pluginPrefix + ChatColor.RED + "Usage: /dm show {playername}");
+                    return true;
+                }
+
+                String targetName = args[1];
+                String deathMessage = userdataConfig.getString("deathMessages." + targetName);
+
+                if (deathMessage != null) {
+                    sender.sendMessage(pluginPrefix + ChatColor.YELLOW + "Custom death message for " + targetName + ":");
+                    sender.sendMessage(ChatColor.GRAY + targetName + " " + ChatColor.RESET + deathMessage);
+                } else {
+                    sender.sendMessage(pluginPrefix + ChatColor.RED + "No custom death message set for " + targetName + ".");
+                }
+                return true;
+
             } else if ("reload".equalsIgnoreCase(action)) {
                 if (!sender.hasPermission("skyxnetwork.deathmessage.reload")) {
                     sender.sendMessage(pluginPrefix + ChatColor.RED + "You do not have permission to reload the configuration.");

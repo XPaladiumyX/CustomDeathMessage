@@ -141,7 +141,10 @@ public final class CustomDeathMessage extends JavaPlugin implements Listener {
                 userdataConfig.set("deathMessages." + player.getName(), message);
                 saveUserDataFile();
 
-                player.sendMessage(pluginPrefix + ChatColor.GREEN + "Custom death message set!\n" + ChatColor.RESET + message);
+                // Prévisualisation du message
+                String preview = ChatColor.translateAlternateColorCodes('&',
+                        "&7" + player.getName() + " " + message);
+                player.sendMessage(pluginPrefix + ChatColor.GREEN + "Custom death message set!\n" + ChatColor.RESET + preview);
 
             } else if ("reset".equalsIgnoreCase(action)) {
                 if (!(sender instanceof Player)) {
@@ -189,10 +192,13 @@ public final class CustomDeathMessage extends JavaPlugin implements Listener {
         String customMessage = deathMessages.get(player.getName());
 
         if (customMessage != null) {
-            // Remplace le message par défaut par le message personnalisé
+            // Formater le message avec le nom du joueur en gris
             String formattedMessage = ChatColor.translateAlternateColorCodes('&',
-                    customMessage.replace("%player%", player.getName()));
+                    "&7" + player.getName() + " " + customMessage);
             event.setDeathMessage(formattedMessage);
+        } else {
+            // Si aucun message personnalisé, laisser un message par défaut
+            event.setDeathMessage("&7" + player.getName() + " died.");
         }
     }
 

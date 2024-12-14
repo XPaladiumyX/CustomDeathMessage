@@ -86,7 +86,7 @@ public final class CustomDeathMessage extends JavaPlugin implements Listener {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("deathmessage")) {
             if (args.length < 1) {
-                sender.sendMessage(pluginPrefix + ChatColor.RED + "Usage: /deathmessage [set/reset/reload] [message]");
+                sender.sendMessage(pluginPrefix + ChatColor.RED + "Usage: /deathmessage [set/reset/show/reload] [Only for show : playername] [message]");
                 return true;
             }
 
